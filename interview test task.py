@@ -20,10 +20,9 @@
 from random import randint
 
 
-class KS():
-    def weight(self):
-        self.weight = randint(5, 15)
-        return self.weight
+class Garage():
+    def weight(self, a, b):
+        return randint(a, b)
 
     def color(self):
         color_list = [
@@ -33,20 +32,65 @@ class KS():
         self.color = color_list[randint(0, 9)]
         return self.color
 
+    def transmission(self, a=1, b=15):
+        return randint(a, b)
 
-class Bicycle(KS):
+    def power(self, a, b):
+        return randint(a, b)
+
+    def racing_100(self, a):
+        return randint(100//a, 150//a)/10
+
+    def rudder(self):
+        rudder = ['Right-hand', 'Left-hand']
+        return rudder[randint(0, 1)]
+
+
+class KS(Garage):
     def __init__(self):
-        self.transmission = randint(1, 20)
-        self.color = KS().color()
+        self.weight = Garage().weight(2, 10)
+        self.color = Garage().color()
 
 
-class EKS(KS):
+class Bicycle(Garage):
     def __init__(self):
-        self.weight = KS().weight()
-        self.power = randint(180, 480)
-        self.color = KS().color()
+        self.weight = Garage().weight(10, 20)
+        self.color = Garage().color()
+        self.transmission = Garage().transmission()
 
-Samo = KS()
-print(Samo.color(), Samo.weight())
-Yamaha = EKS()
-print(Yamaha.power, Yamaha.color)
+
+class EKS(Garage):
+    def __init__(self):
+        self.weight = Garage().weight(10, 30)
+        self.color = Garage().color()
+        self.power = Garage().power(180, 500)  # Watt
+
+
+class Moto(Garage):
+    def __init__(self):
+        self.weight = Garage().weight(110, 330)
+        self.color = Garage().color()
+        self.power = Garage().power(20, 100)
+        self.racing_100 = Garage().racing_100(self.power//20)
+
+
+class Car(Garage):
+    def __init__(self):
+        self.weight = Garage().weight(1000, 2500)
+        self.color = Garage().color()
+        self.power = Garage().power(100, 280)
+        self.racing_100 = Garage().racing_100(self.power//70)
+        self.rudder = Garage().rudder()
+
+
+garage = ['KS', 'Bicycle',
+          'EKS', 'Moto', 'Car']
+garage_qua = []
+for i in range(len(garage)):
+    garage_qua.append(randint(0, 2))
+    for k in range(garage_qua[i]):
+        print(garage[i])
+
+print(garage_qua)
+
+
