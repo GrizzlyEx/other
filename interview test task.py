@@ -11,7 +11,7 @@
 Свойства транспортных средств:
 Самокат 'Kick scooter' (KS) – вес, цвет.
 Велосипед 'Bicycle' – вес, цвет, количество передач.
-Электросамокат 'EKS' - вес, цвет, мощность электромотора.
+Электросамокат 'Electric Scooter' (ES) - вес, цвет, мощность электромотора.
 Мотоцикл 'Motorcycle' (Moto) – вес, цвет, мощность мотора, время разгона до 100 км/ч.
 Автомобиль 'Car' – вес, цвет, мощность мотора, время разгона до 100 км/ч,
                                         расположение руля(правое/левое).
@@ -29,8 +29,7 @@ class Garage():
             'White', 'Black', 'Brown',
             'Blue', 'Gray', 'Red', 'Orange',
             'Yellow', 'Purple', 'Pink']
-        self.color = color_list[randint(0, 9)]
-        return self.color
+        return color_list[randint(0, 9)]
 
     def transmission(self, a=1, b=15):
         return randint(a, b)
@@ -50,6 +49,10 @@ class KS(Garage):
     def __init__(self):
         self.weight = Garage().weight(2, 10)
         self.color = Garage().color()
+        print(f'''Kick Scooter:
+        weight - {self.weight}kg,
+        color - {self.color}''')
+        print('-'*28)
 
 
 class Bicycle(Garage):
@@ -57,13 +60,23 @@ class Bicycle(Garage):
         self.weight = Garage().weight(10, 20)
         self.color = Garage().color()
         self.transmission = Garage().transmission()
+        print(f'''Bicycle:
+        weight - {self.weight}kg,
+        color - {self.color},
+        number of gears - {self.transmission}''')
+        print('-' * 28)
 
 
-class EKS(Garage):
+class ES(Garage):
     def __init__(self):
         self.weight = Garage().weight(10, 30)
         self.color = Garage().color()
         self.power = Garage().power(180, 500)  # Watt
+        print(f'''Electric Scooter:
+        weight - {self.weight}kg,
+        color - {self.color},
+        power of engine - {self.power}Wt''')
+        print('-' * 28)
 
 
 class Moto(Garage):
@@ -72,6 +85,12 @@ class Moto(Garage):
         self.color = Garage().color()
         self.power = Garage().power(20, 100)
         self.racing_100 = Garage().racing_100(self.power//20)
+        print(f'''Motorcycle:
+        weight - {self.weight}kg,
+        color - {self.color},
+        power of engine - {self.power}hp,
+        racing to 100km/h - {self.racing_100}sec''')
+        print('-' * 28)
 
 
 class Car(Garage):
@@ -81,16 +100,34 @@ class Car(Garage):
         self.power = Garage().power(100, 280)
         self.racing_100 = Garage().racing_100(self.power//70)
         self.rudder = Garage().rudder()
+        print(f'''Car:
+        weight - {self.weight}kg,
+        color - {self.color},
+        power of engine - {self.power}hp,
+        racing to 100km/h - {self.racing_100}sec,
+        steering side - {self.rudder}''')
+        print('-' * 28)
 
 
-garage = ['KS', 'Bicycle',
-          'EKS', 'Moto', 'Car']
+garage = ['Kick Scooter', 'Bicycle',
+          'Electric Scooter', 'Motorcycle', 'Car']
 garage_qua = []
+
 for i in range(len(garage)):
     garage_qua.append(randint(0, 2))
     for k in range(garage_qua[i]):
-        print(garage[i])
+        if garage[i] == 'Kick Scooter':
+            KS()
+        elif garage[i] == 'Bicycle':
+            Bicycle()
+        elif garage[i] == 'Electric Scooter':
+            ES()
+        elif garage[i] == 'Motorcycle':
+            Moto()
+        else:
+            Car()
 
-print(garage_qua)
+
+print(f'Total transport in the garage: {sum(garage_qua)}')
 
 
