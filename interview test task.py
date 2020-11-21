@@ -20,22 +20,13 @@
 from random import randint
 
 
-class Garage():
-    def weight(self, a, b):
-        return randint(a, b)
-
+class Garage:
     def color(self):
         color_list = [
             'White', 'Black', 'Brown',
             'Blue', 'Gray', 'Red', 'Orange',
             'Yellow', 'Purple', 'Pink']
         return color_list[randint(0, 9)]
-
-    def transmission(self, a=1, b=15):
-        return randint(a, b)
-
-    def power(self, a, b):
-        return randint(a, b)
 
     def racing_100(self, a):
         return randint(100//a, 150//a)/10
@@ -47,65 +38,65 @@ class Garage():
 
 class KS(Garage):
     def __init__(self):
-        self.weight = Garage().weight(2, 10)
+        self.weight = randint(2, 10)
         self.color = Garage().color()
         print(f'''Kick Scooter:
-        weight - {self.weight}kg,
-        color - {self.color}''')
+    weight - {self.weight}kg,
+    color - {self.color}''')
         print('-'*28)
 
 
 class Bicycle(Garage):
     def __init__(self):
-        self.weight = Garage().weight(10, 20)
+        self.weight = randint(10, 20)
         self.color = Garage().color()
-        self.transmission = Garage().transmission()
+        self.transmission = randint(1, 15)
         print(f'''Bicycle:
-        weight - {self.weight}kg,
-        color - {self.color},
-        number of gears - {self.transmission}''')
+    weight - {self.weight}kg,
+    color - {self.color},
+    number of gears - {self.transmission}''')
         print('-' * 28)
 
 
 class ES(Garage):
     def __init__(self):
-        self.weight = Garage().weight(10, 30)
+        self.weight = randint(10, 30)
         self.color = Garage().color()
-        self.power = Garage().power(180, 500)  # Watt
+        self.power = randint(180, 500)  # Watt
         print(f'''Electric Scooter:
-        weight - {self.weight}kg,
-        color - {self.color},
-        power of engine - {self.power}Wt''')
+    weight - {self.weight}kg,
+    color - {self.color},
+    power of engine - {self.power}Wt''')
         print('-' * 28)
 
 
 class Moto(Garage):
     def __init__(self):
-        self.weight = Garage().weight(110, 330)
+        self.weight = randint(110, 330)
         self.color = Garage().color()
-        self.power = Garage().power(20, 100)
+        self.power = randint(20, 100)
         self.racing_100 = Garage().racing_100(self.power//20)
         print(f'''Motorcycle:
-        weight - {self.weight}kg,
-        color - {self.color},
-        power of engine - {self.power}hp,
-        racing to 100km/h - {self.racing_100}sec''')
+    weight - {self.weight}kg,
+    color - {self.color},
+    power of engine - {self.power}hp,
+    racing to 100km/h - {self.racing_100}sec''')
         print('-' * 28)
 
 
 class Car(Garage):
     def __init__(self):
-        self.weight = Garage().weight(1000, 2500)
+        self.weight = randint(1000, 2500)
         self.color = Garage().color()
-        self.power = Garage().power(100, 280)
+        self.power = randint(100, 280)
         self.racing_100 = Garage().racing_100(self.power//70)
         self.rudder = Garage().rudder()
         print(f'''Car:
-        weight - {self.weight}kg,
-        color - {self.color},
-        power of engine - {self.power}hp,
-        racing to 100km/h - {self.racing_100}sec,
-        steering side - {self.rudder}''')
+    weight - {self.weight}kg,
+    color - {self.color},
+    power of engine - {self.power}hp,
+    racing to 100km/h - {self.racing_100}sec,
+    steering side - {self.rudder}''')
         print('-' * 28)
 
 
